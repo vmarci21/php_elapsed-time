@@ -1,5 +1,5 @@
 # php elapsed-time
-PHP function to calculate the elapsed time.
+PHP function to calculate the elapsed time. Calculate the elapsed hours, days, weeks and years. Days, weeks and years to count the change at midnight, and not 24 hours. (yesterday 23:59 time in the next day 2:00 yesterday's result has received)
 
 ## Using
 Call this function, with the following parameters:
