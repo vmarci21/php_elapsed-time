@@ -1,3 +1,4 @@
+<?php
 public function elapsed_time($tp,$time = null){ 
 
 //English (default):
@@ -85,3 +86,4 @@ if ( $elap == '' ) {
   return $elap;
 }
 }
+?>
