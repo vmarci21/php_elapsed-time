@@ -65,7 +65,7 @@ $days3 = $days2;
 }else{
 $days3 = $days2+($days-$days2);
 }
-if($days3>date("N") && $days3<date("N")+7){
+if($days3>date("N") and $days3<date("N")+7){
 $napja = date ("N",$tp);
 $napja1 = $napja-1;
 $elap = $days[$napja1].', '.date ( "m.d H:i ", $tp );
