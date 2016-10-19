@@ -1,5 +1,10 @@
 <?php
-public function elapsed_time($tp,$time = null){ 
+/*Veszter Márton 2016
+IntoMedia http://intomedia.hu
+Version 1.2
+*/
+
+function elapsed_time($tp,$time = null){ 
 
 //English (default):
 $terms = array('now'=>'Now','min'=>'minutes ago','hour'=>'hours ago','day'=>'days ago','yday'=>'yesterday','yday2'=>'2 days ago','week'=>'weeks ago','oneyear'=>'Last year');
@@ -12,6 +17,12 @@ $days = array('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sun
 //Germany - Deutch:
 //$terms = array ('now'=>'Jetzt','min'=>'minuten','hour'=>'stunden','day'=>'tagen','yday'=>'gestern','yday2'=>'vorgestern','week'=>'Wochen','oneyear'=>'letztes Jahr');
 //$Tage = array ('Montag','Dienstag','Mittwoch','Donnerstag','Freitag', 'Samstag', 'Sonntag');
+
+
+$timeformat = 'H:i'; //24 hours format
+//$timeformat = 'h:i a'; //12 hours format
+$dateformat = 'm.d';
+$fulldateformat = 'Y.m.d';
 
 
 $time = Is_null($time) ? time() : $time;
@@ -30,21 +41,21 @@ if ($week2 >= 4) {
   $t_year = date('Y', $tp);
   $buff1 = $now_year-$t_year;
   if($buff1==0){
-    return date ("m.d H:i", $tp );
+    return date ($dateformat." ".$timeformat, $tp );
   }elseif($buff1==1){
-    return $terms['oneyear'].' '.date ("m.d H:i", $tp );
+    return $terms['oneyear'].' '.date ($dateformat." ".$timeformat, $tp );
   }else{
-    return date ("Y.m.d H:i", $tp );
+    return date ($fulldateformat." ".$timeformat, $tp );
   }
 }
 
 
 if($days==2){
-  return $terms['yday2'].', '.date ("H:i ", $tp );
+  return $terms['yday2'].', '.date ($timeformat, $tp );
 }
 
 if($days==1){
-  return $terms['yday'].', '.date ("H:i ", $tp );
+  return $terms['yday'].', '.date ($timeformat, $tp );
 }
 if($days==1 and $days2==0){
   return $terms['yday'].', '.$hour2.' '.$terms['hour'];
@@ -69,12 +80,12 @@ if ( $sec > 0 ) {
         if($days3>date("N") and $days3<date("N")+7){
           $napja = date ("N",$tp);
           $napja1 = $napja-1;
-          $elap = $days[$napja1].', '.date ( "m.d H:i ", $tp );
+          $elap = $days[$napja1].', '.date ($dateformat." ".$timeformat, $tp );
         }else{
-          $elap = $days3.' '.$terms['day'].', '.date ( "m.d H:i ", $tp );
+          $elap = $days3.' '.$terms['day'].', '.date ($dateformat." ".$timeformat, $tp );
         }
         if ( $week != 0 ) {
-          $elap =$week2.' '.$terms['week'].', '.date ( "m.d H:i ", $tp );
+          $elap =$week2.' '.$terms['week'].', '.date ($dateformat." ".$timeformat, $tp );
         }
       }
     }
@@ -86,4 +97,6 @@ if ( $elap == '' ) {
   return $elap;
 }
 }
+
+
 ?>
